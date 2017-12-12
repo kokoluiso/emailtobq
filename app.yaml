@@ -1,0 +1,18 @@
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+# [START bounce_service]
+# [START mail_service]
+inbound_services:
+- mail
+# [END mail_service]
+- mail_bounce
+# [END bounce_service]
+
+handlers:
+# [START handle_incoming_email]
+- url: /_ah/mail/.+
+  script: handle_incoming_email.app
+  login: admin
+# [END handle_incoming_email]
